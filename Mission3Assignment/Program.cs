@@ -19,33 +19,38 @@ namespace Mission3Assignment
 
             // method to display the board
 
+            int GamePlay = 0;
             
             // do a for loop 9 times for each player.
             while (keepPlaying == true)
             {
-                for (int i = 1; i < 10; i++)
+                while (GamePlay == 0)
                 {
-                    sc.Board(PlayerChoice);
-                    if (i % 2 == 1)
+                    for (int i = 1; i < 10; i++)
                     {
-                        // Ensure number is between 1 and 9?
-                        // Error message that won't allow me to add in FirstPlayer
+                        sc.Board(PlayerChoice);
+                        if (i % 2 == 1)
+                        {
+                            // Ensure number is between 1 and 9?
+                            // Error message that won't allow me to add in FirstPlayer
 
-                        Console.WriteLine("Which number on the board would you like to choose {0}?", Player1);
-                        int NumChoice = int.Parse(Console.ReadLine());
-                        // Add choice to array
-                        PlayerChoice[NumChoice] = 'X';
-                        // Use that to display modified board
-                    }
-                    else
-                    {
-                        Console.WriteLine("Which number on the board would you like to choose {0}?", Player2);
-                        int NumChoice = int.Parse(Console.ReadLine());
-                        // Add choice to array
-                        PlayerChoice[NumChoice] = 'O';
-                        // Use that to display modified board
+                            Console.WriteLine("Which number on the board would you like to choose {0}?", Player1);
+                            int NumChoice = int.Parse(Console.ReadLine());
+                            // Add choice to array
+                            PlayerChoice[NumChoice] = 'X';
+                            // Use that to display modified board
+                        }
+                        else
+                        {
+                            Console.WriteLine("Which number on the board would you like to choose {0}?", Player2);
+                            int NumChoice = int.Parse(Console.ReadLine());
+                            // Add choice to array
+                            PlayerChoice[NumChoice] = 'O';
+                            // Use that to display modified board
+                        }
                     }
                 }
+
                 Console.WriteLine("Great game!\nWould you like to play another game?(y/n)");
                 char play = char.Parse(Console.ReadLine());
 
