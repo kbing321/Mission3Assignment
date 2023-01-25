@@ -12,7 +12,7 @@ namespace Mission3Assignment
             Console.WriteLine("Please enter Player2's Name:");
             string Player2 = Console.ReadLine();
 
-            string[] PlayerChoice = new string[9];
+            char[] PlayerChoice = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
             // method to display the board
 
