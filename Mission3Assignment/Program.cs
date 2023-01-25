@@ -15,41 +15,82 @@ namespace Mission3Assignment
             Console.WriteLine("Please enter Player2's Name:");
             string Player2 = Console.ReadLine();
 
-            char[] PlayerChoice = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-
-            // method to display the board
-
-            int GamePlay = 0;
+            
             
             // do a for loop 9 times for each player.
             while (keepPlaying == true)
             {
-                while (GamePlay == 0)
-                {
-                    for (int i = 1; i < 10; i++)
-                    {
-                        sc.Board(PlayerChoice);
-                        if (i % 2 == 1)
-                        {
-                            // Ensure number is between 1 and 9?
-                            // Error message that won't allow me to add in FirstPlayer
+                char[] PlayerChoice = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
-                            Console.WriteLine("Which number on the board would you like to choose {0}?", Player1);
-                            int NumChoice = int.Parse(Console.ReadLine());
-                            // Add choice to array
-                            PlayerChoice[NumChoice] = 'X';
-                            // Use that to display modified board
+                // method to display the board
+
+                sc.Board(PlayerChoice);
+                int i = 1;
+                while (i < 10)
+                {
+                    //sc.Board(PlayerChoice);
+                    
+                    if (i % 2 == 1)
+                    {
+
+                        Console.WriteLine("Which number on the board would you like to choose {0}?", Player1);
+                        int NumChoice = int.Parse(Console.ReadLine());
+                        // Add choice to array
+                        if (PlayerChoice[NumChoice] == 'O' || PlayerChoice[NumChoice] == 'X')
+                        {
+                            Console.WriteLine("That spot has already been taken, pick another one!");
+                            continue;
                         }
                         else
                         {
-                            Console.WriteLine("Which number on the board would you like to choose {0}?", Player2);
-                            int NumChoice = int.Parse(Console.ReadLine());
-                            // Add choice to array
+                            PlayerChoice[NumChoice] = 'X';
+                        }
+                        
+                        // Use that to display modified board
+                    }
+                    else
+                    {
+                        Console.WriteLine("Which number on the board would you like to choose {0}?", Player2);
+                        int NumChoice = int.Parse(Console.ReadLine());
+                        // Add choice to array
+                        if (PlayerChoice[NumChoice] == 'O' || PlayerChoice[NumChoice] == 'X')
+                        {
+                            Console.WriteLine("That spot has already been taken, pick another one!");
+                            continue;
+                        }
+                        else
+                        {
                             PlayerChoice[NumChoice] = 'O';
-                            // Use that to display modified board
                         }
                     }
+
+                    sc.Board(PlayerChoice);
+
+                    string result = sc.Winner(PlayerChoice, Player1, Player2);
+                    if (i == 9)
+                    {
+                        if (result == "Draw!")
+                        {
+                            Console.WriteLine(result);
+                            i = 10;
+                        }
+                        else
+                        {
+                            Console.WriteLine(result);
+                            i = 10;
+                        }
+                    }
+                    else
+                    {
+                        if (result == Player1 + " Wins" || result == Player2 + " Wins")
+                        {
+                            Console.WriteLine(result);
+                            i = 10;
+                        }
+                    }
+                    i++;
                 }
+                //}
 
                 Console.WriteLine("Great game!\nWould you like to play another game?(y/n)");
                 char play = char.Parse(Console.ReadLine());
@@ -60,6 +101,7 @@ namespace Mission3Assignment
                 }
                 else
                 {
+                    Console.WriteLine("Thanks for playing!");
                     keepPlaying = false;
                 }
             }
