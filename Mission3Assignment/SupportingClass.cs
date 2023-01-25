@@ -1,9 +1,9 @@
 ﻿using System;
 namespace Mission3Assignment
 {
-    public class EmptyClass
+    public class SupportingClass
     {
-        public EmptyClass()
+        public SupportingClass()
         {
             int[] board = new int[] { 1, 2, 3, 4, 5, 6 };
 

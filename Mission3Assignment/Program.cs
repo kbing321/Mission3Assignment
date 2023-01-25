@@ -6,6 +6,8 @@ namespace Mission3Assignment
     {
         public static void Main(string[] args)
         {
+            SupportingClass sc = new SupportingClass(); //declaration and instantiation
+
             Console.WriteLine("Welcome to this game of Tic Tac Toe!");
             Console.WriteLine("Please enter Player1's Name:");
             string Player1 = Console.ReadLine();
@@ -35,10 +37,12 @@ namespace Mission3Assignment
             // do a for loop 9 times for each player.
             for (int i = 1; i < 10; i++)
             {
+                sc.Board(PlayerChoice);
                 if (i % 2 == 0)
                 {
                     // Ensure number is between 1 and 9?
                     // Error message that won't allow me to add in FirstPlayer
+                    
                     Console.WriteLine("Which number on the board would you like to choose?");
                     int NumChoice = int.Parse(Console.ReadLine());
                     // Add choice to array
