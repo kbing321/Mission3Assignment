@@ -6,8 +6,8 @@ namespace Mission3Assignment
         // method to determine winner
         public string Winner(char[] arr, string p1, string p2)
         {
-            string one = p1 + " Wins";
-            string two = p2 + " Wins";
+            string one = p1 + " Wins!";
+            string two = p2 + " Wins!";
             string draw = "Draw!";
 
             //option1
@@ -88,7 +88,7 @@ namespace Mission3Assignment
             }
             
         }
-     
+        // method to print board
         public void Board(char[] arr)
         {
             Console.WriteLine("     |     |      ");

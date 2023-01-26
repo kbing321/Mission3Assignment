@@ -6,36 +6,36 @@ namespace Mission3Assignment
     {
         public static void Main(string[] args)
         {
-            SupportingClass sc = new SupportingClass(); //declaration and instantiation
             bool keepPlaying = true;
 
-            Console.WriteLine("Welcome to this game of Tic Tac Toe!");
-            Console.WriteLine("Please enter Player1's Name:");
-            string Player1 = Console.ReadLine();
-            Console.WriteLine("Please enter Player2's Name:");
-            string Player2 = Console.ReadLine();
-
+            SupportingClass sc = new SupportingClass(); //declaration and instantiation
             
-            
-            // do a for loop 9 times for each player.
+            // loop to let user's keep playing as many times as they want
             while (keepPlaying == true)
             {
                 char[] PlayerChoice = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-
-                // method to display the board
-
-                sc.Board(PlayerChoice);
                 int i = 1;
+
+                // Welcome users to the game and get user names
+                Console.WriteLine("Welcome to this game of Tic Tac Toe!");
+                Console.WriteLine("Please enter the first player's Name:");
+                string Player1 = Console.ReadLine();
+                Console.WriteLine("Please enter the second player's Name:");
+                string Player2 = Console.ReadLine();
+
+                // method call to display the board
+                sc.Board(PlayerChoice);
+
+                // loop to let users place Xs and Os until a player wins or board is full
                 while (i < 10)
-                {
-                    //sc.Board(PlayerChoice);
-                    
+                {   
                     if (i % 2 == 1)
                     {
-
-                        Console.WriteLine("Which number on the board would you like to choose {0}?", Player1);
+                        // Receive board spot choice on each of player 1's turn
+                        Console.WriteLine("Which number on the board would you like to choose, {0}?", Player1);
                         int NumChoice = int.Parse(Console.ReadLine());
-                        // Add choice to array
+
+                        // Add player 1 choice to array if spot not already taken
                         if (PlayerChoice[NumChoice] == 'O' || PlayerChoice[NumChoice] == 'X')
                         {
                             Console.WriteLine("That spot has already been taken, pick another one!");
@@ -45,14 +45,14 @@ namespace Mission3Assignment
                         {
                             PlayerChoice[NumChoice] = 'X';
                         }
-                        
-                        // Use that to display modified board
                     }
                     else
                     {
-                        Console.WriteLine("Which number on the board would you like to choose {0}?", Player2);
+                        // Receive board spot choice on each of player 2's turn
+                        Console.WriteLine("Which number on the board would you like to choose, {0}?", Player2);
                         int NumChoice = int.Parse(Console.ReadLine());
-                        // Add choice to array
+
+                        // Add player 2 choice to array if spot not already taken
                         if (PlayerChoice[NumChoice] == 'O' || PlayerChoice[NumChoice] == 'X')
                         {
                             Console.WriteLine("That spot has already been taken, pick another one!");
@@ -64,9 +64,14 @@ namespace Mission3Assignment
                         }
                     }
 
+                    Console.Clear();
+
+                    //print out updated board
                     sc.Board(PlayerChoice);
 
                     string result = sc.Winner(PlayerChoice, Player1, Player2);
+
+                    // check for either a draw or a win on last spot, or a win on any but the last spot to play on
                     if (i == 9)
                     {
                         if (result == "Draw!")
@@ -82,7 +87,7 @@ namespace Mission3Assignment
                     }
                     else
                     {
-                        if (result == Player1 + " Wins" || result == Player2 + " Wins")
+                        if (result == Player1 + " Wins!" || result == Player2 + " Wins!")
                         {
                             Console.WriteLine(result);
                             i = 10;
@@ -90,13 +95,14 @@ namespace Mission3Assignment
                     }
                     i++;
                 }
-                //}
 
-                Console.WriteLine("Great game!\nWould you like to play another game?(y/n)");
+                // Ask users if they want to play again 
+                Console.WriteLine("Great game!\nWould you like to play again?(y/n)");
                 char play = char.Parse(Console.ReadLine());
 
                 if (play == 'y')
                 {
+                    Console.Clear();
                     keepPlaying = true;
                 }
                 else
@@ -108,21 +114,3 @@ namespace Mission3Assignment
         }
     }
 }
-
-
-// maybe use a random number between 1 and 2 to choose which player goes first
-/*int whoGoesFirst = 0;
-Random randNum = new Random();
-whoGoesFirst = randNum.Next(1, 2);
-
-
-if (whoGoesFirst == 1)
-{
-    string FirstPlayer = Player1;
-    string SecondPlayer = Player2;
-}
-else
-{
-    string FirstPlayer = Player2;
-    string SecondPlayer = Player1;
-}*/
